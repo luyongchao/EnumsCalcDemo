@@ -1,0 +1,31 @@
+ [FlagsAttribute]
+    enum MyColor
+    {
+        Red = 1,
+        Green = 2,
+        Blue = 4,
+        Yellow = 8
+    };
+     static class Program
+    {
+        /// <summary>
+        /// 应用程序的主入口点。
+        /// </summary>
+        [STAThread]
+        static void Main()
+        {
+            MyColor myColor = MyColor.Red | MyColor.Green | MyColor.Blue| MyColor.Yellow;
+
+            string strResult = string.Format("myColor.ToString():[{0}],转化整形后为：[{1}]", myColor.ToString(), ((int)myColor).ToString());
+             Console.WriteLine(strResult);
+
+
+            string strEnums = myColor.ToString();
+            string[] strs=strEnums.Split(',');
+            foreach (string item in strs)
+            {
+                MyColor MyColor2 = (MyColor)Enum.Parse(typeof(MyColor), item); ;
+                 Console.WriteLine(string.Format("item[{0}]转化枚举后为:[{1}]",item,MyColor2.ToString()));
+            }
+        }
+    }
